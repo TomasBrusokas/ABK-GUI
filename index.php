@@ -1,55 +1,10 @@
 <!DOCTYPE html>
-<?php include("template.php"); ?>
+<?php include("template.php");
+error_reporting(0);?>
 <html>
 <head>
 <title><?php echo $lang['dashboard']; ?></title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip(placement: "bottom");
-});
-</script>
-
-<script>
-function languageSwitch (lang) {
-	var url = "<?php echo $currentURL; ?>";
-	switch(lang) {
-		case 'lt':
-			document.cookie = "lt";
-			window.location.href = url + "?lang=" + document.cookie;
-			break;
-		case 'en':
-			document.cookie = "en";
-			window.location.href = url + "?lang=" + document.cookie;
-			break;
-		default:
-			alert("Oops! Something went wrong, please contact admin");
-	}
-}
-</script>
-
-<script>
-function redirect(URL) {
-	window.location.href = URL + "?lang=" + document.cookie;
-}
-</script>
-
-<script>
-function setFrameLanguage() {
-	var frame_url = "detailed_info.php?lang=" + document.cookie;
-	top.document.getElementById('frame').setAttribute('src', frame_url);
-}
-</script>
-
-<script>
-	function showAddButton() {
-		if (document.getElementById('add').style.display == "") {
-			document.getElementById('add').style.display = "none";
-		} else {
-			document.getElementById('add').style.display = "";
-		}
-	}
-</script>
 
 <style>
 table, th, td, th input {
@@ -99,6 +54,136 @@ table, th, td, th input {
 .filterable .filters input[disabled]:-ms-input-placeholder {
 	color: #333;
 }
+
+.led-green {
+    margin: 20px auto;
+    width: 12px;
+    height: 12px;
+    background-color: #690;
+    border-radius: 50%;
+    box-shadow: #000 0 -1px 7px 1px, inset #460 0 -1px 9px, #7D0 0 2px 12px;
+}
+
+.led-red {
+    margin: 20px auto;
+    width: 12px;
+    height: 12px;
+    background-color: #940;
+    border-radius: 50%;
+    box-shadow: #000 0 -1px 7px 1px, inset #600 0 -1px 9px, #F00 0 2px 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  padding: 0px;
+  background: white;
+  border-style: solid;
+  border-width: 2px;
+}
+.flatTable {
+  width: 100%;
+  min-width: 500px;
+  border-collapse: collapse;
+  font-weight: bold;
+  color: #6b6b6b;
+}
+.flatTable tr {
+  height: 50px;
+  background: #d4d1d5;
+  border-bottom: rgba(0, 0, 0, 0.05) 1px solid;
+}
+.flatTable td {
+  box-sizing: border-box;
+  padding-left: 30px;
+}
+.flatTable .titleTr {
+  height: 70px;
+  color: #f6f3f7;
+  background: #C90000;
+  border: 0px solid;
+  font-size: 30px;
+}
+
+.flatTable .controlTd {
+  position: relative;
+  width: 80px;
+  background: url(http://i.imgur.com/9Q5f6cv.png) center center no-repeat;
+  cursor: pointer;
+}
+.flatTable .headingTr {
+  height: 30px;
+  background: #4d4d4d;
+  color: #f6f3f7;
+  font-size: 18px;
+  border: 0px solid;
+}
+
+.sForm {
+  position: absolute;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100%;
+  background: #d4d1d5;
+  overflow: hidden;
+  transition: width 1s, right .3s;
+  padding: 0px;
+  box-sizing: border-box;
+}
+.sForm .close {
+  float: right;
+  height: 70px;
+  width: 80px;
+  padding-top: 25px;
+  box-sizing: border-box;
+  background: rgba(255, 0, 0, 0.4);
+}
+.sForm .title {
+  width: 100%;
+  height: 70px;
+  padding-top: 20px;
+  padding-left: 20px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.1);
+}
+.open {
+  right: 0;
+  width: 400px !important;
+}
+.settingsIcons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  overflow: hidden;
+}
+.display {
+  width: 300px;
+}
+.settingsIcon {
+  float: right;
+  background: #418a95;
+  color: #f6f3f7;
+  height: 50px;
+  width: 80px;
+  padding-top: 15px;
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+  transition: width 1s;
+}
+.settingsIcon:hover {
+  background: #1f6873;
+}
+tr:nth-child(3) .settingsIcon {
+  height: 51px;
+}
+.openIcon {
+  width: 80px;
+}
 </style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -124,6 +209,8 @@ table, th, td, th input {
 				<div id="languages">
 					<a onclick="languageSwitch('en')"><img data-toggle="tooltip" title="<?php echo $lang['en']; ?>" src="assets/img/en.png" style="cursor:pointer"/></a>
 					<a onclick="languageSwitch('lt')"><img data-toggle="tooltip" title="<?php echo $lang['lt']; ?>" src="assets/img/lt.png" style="cursor:pointer"/></a>
+					<a onclick="languageSwitch('sv')"><img data-toggle="tooltip" title="<?php echo $lang['sv']; ?>" src="assets/img/sv.png" style="cursor:pointer; width: 24px; height: 24px"/></a>
+					<a onclick="languageSwitch('dz')"><img data-toggle="tooltip" title="<?php echo $lang['dz']; ?>" src="assets/img/dz.png" style="cursor:pointer; width: 24px; height: 24px"/></a>
 				</div>
                 <a class="navbar-brand" href="index.php"><?php echo $lang['email']; ?></a> 
             </div>
@@ -138,16 +225,27 @@ font-size: 16px;"> <?php echo $lang['last_access']; ?> : 11-11-2016 &nbsp; <a on
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
 				<li class="text-center">
-                    <img src="assets/img/find_user.png" class="user-image img-responsive"/>
+                    <img src="assets/img/logo.gif" class="user-image img-responsive"/>
 					</li>
                     <li>
                         <a class="active-menu" onclick="redirect('index.php')"><i class="fa fa-dashboard fa-3x"></i><span><?php echo $lang['dashboard']; ?></span></a>
                     </li>
+					<?php if($_COOKIE['userType'] == 'admin' ) { ?>
                     <li>
                         <a onclick="redirect('users.php')"><i class="fa fa-users fa-3x"></i><span><?php echo $lang['users']; ?></span></a>
                     </li>
+					<?php } ?>
                     <li>
                         <a onclick="redirect('statistics.php')"><i class="fa fa-bar-chart-o fa-3x"></i><span><?php echo $lang['statistics']; ?></span></a>
+                    </li>
+					<li>
+                        <a onclick="redirect('groups.php')"><i class="fa fa-address-book-o fa-3x"></i><span><?php echo $lang['groups']; ?></span></a>
+                    </li>
+					<li>
+                        <a onclick="redirect('failures.php')"><i class="fa fa-wrench fa-3x"></i><span><?php echo $lang['failures']; ?></span></a>
+                    </li>
+					<li>
+                        <a onclick="redirect('rules.php')"><i class="fa fa-lock fa-3x"></i><span><?php echo $lang['rules']; ?></span></a>
                     </li>	
                 </ul>
                
@@ -170,54 +268,60 @@ font-size: 16px;"> <?php echo $lang['last_access']; ?> : 11-11-2016 &nbsp; <a on
 							<table class="table">
 								<thead>
 									<tr class="filters">
-										<th><input type="text" class="form-control" placeholder="#" disabled></th>
+										<th><input type="text" class="form-control" placeholder="IP" disabled></th>
 										<th><input type="text" class="form-control" placeholder="CPU" disabled></th>
 										<th><input type="text" class="form-control" placeholder="RAM" disabled></th>
 										<th><input type="text" class="form-control" placeholder="HDD" disabled></th>
 										<th><input type="text" class="form-control" placeholder="OS" disabled></th>
+										<th><input type="text" class="form-control" placeholder="Status" disabled></th>
 										<th style="text-align: center"><button id="add" class="btn btn-success btn-xs" style="display: none"><span class="fa fa-check"></span></button></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td>1</td>
+										<td>192.168.16.14</td>
 										<td>i5 3.0GHz</td>
 										<td>4GB DDR3, 1255MHz</td>
 										<td>1TB</td>
-										<td>Windows</td>
-										<td><button onclick="showName('1')"><span class="fa fa-cogs"></span></button></td>
+										<td><img src="assets/img/windows.png" style="width: 15px; height: 15px; margin-right: 5px; margin-bottom: 5px">Windows</td>
+										<td><div class="led-green" style="width: 10px; height: 10px; margin-bottom: 3px; margin-top: 8px"></div></td>
+										<td><button onclick="showName('192.168.16.14')"><span class="fa fa-cogs"></span></button></td>
 									</tr>
 									<tr>
-										<td>2</td>
+										<td>192.168.17.15</td>
 										<td>i7 2.5GHz</td>
 										<td>8GB DDR4, 2133MHz</td>
 										<td>1TB</td>
-										<td>Linux</td>
-										<td><button onclick="showName('2')"><span class="fa fa-cogs"></span></button></td>
+										<td><img src="assets/img/linux.png" style="width: 15px; height: 15px; margin-right: 5px; margin-bottom: 5px">Linux</td>
+										<td><div class="led-red" style="width: 10px; height: 10px; margin-bottom: 3px; margin-top: 8px"></div></td>
+										<td><button onclick="showName('192.168.17.15')"><span class="fa fa-cogs"></span></button></td>
 									</tr>
 									<tr>
-										<td>3</td>
+										<td>192.168.18.16</td>
 										<td>i3 2.0GHz</td>
 										<td>4GB DDR3, 1600MHz</td>
 										<td>1TB</td>
-										<td>Linux</td>
-										<td><button onclick="showName('3')"><span class="fa fa-cogs"></span></button></td>
+										<td><img src="assets/img/linux.png" style="width: 15px; height: 15px; margin-right: 5px; margin-bottom: 5px">Linux</td>
+										<td><div class="led-green" style="width: 10px; height: 10px; margin-bottom: 3px; margin-top: 8px"></div></td>
+										<td><button onclick="showName('192.168.18.16')"><span class="fa fa-cogs"></span></button></td>
 									</tr>
 									<tr>
-										<td>4</td>
+										<td>192.168.19.17</td>
 										<td>i7 2.7GHz</td>
 										<td>32GB DDR4, 2133MHz</td>
 										<td>2TB</td>
-										<td>Windows</td>
-										<td><button onclick="showName('4')"><span class="fa fa-cogs"></span></button></td>
+										<td><img src="assets/img/windows.png" style="width: 15px; height: 15px; margin-right: 5px; margin-bottom: 5px">Windows</td>
+										<td><div class="led-green" style="width: 10px; height: 10px; margin-bottom: 3px; margin-top: 8px"></div></td>
+										<td><button onclick="showName('192.168.19.17')"><span class="fa fa-cogs"></span></button></td>
 									</tr>
 									<tr>
-										<td>5</td>
+										<td>192.168.20.18</td>
 										<td>i3 2.3GHz</td>
 										<td>4GB DDR4, 2133MHz</td>
 										<td>2TB</td>
-										<td>Windows</td>
-										<td><button onclick="showName('5')"><span class="fa fa-cogs"></span></button></td>
+										<td><img src="assets/img/windows.png" style="width: 15px; height: 15px; margin-right: 5px; margin-bottom: 5px">Windows</td>
+										<td><div class="led-red" style="width: 10px; height: 10px; margin-bottom: 3px; margin-top: 8px"></div></td>
+										<td><button onclick="showName('192.168.20.18')"><span class="fa fa-cogs"></span></button></td>
 									</tr>
 								</tbody>
 							</table>
@@ -237,11 +341,56 @@ font-size: 16px;"> <?php echo $lang['last_access']; ?> : 11-11-2016 &nbsp; <a on
 						  </tr>
 						</table>
 						
+<table class="flatTable" id="failures" style="display: none">
+  <tr class="titleTr">
+    <td class="titleTd">Gedimai</td>
+    <td colspan="4"></td>
+    <td class="plusTd button"></td>
+  </tr>
+  <tr class="headingTr">
+    <td>Kontaktinis asmuo</td>
+    <td>Gedimo aprašymas</td>
+    <td>Tipas</td>
+    <td>Statusas</td>
+    <td></td>
+	<td></td>
+  </tr>
+  
+  <tr>
+    <td>test@example.com</td>
+    <td>Neveikia web serveris</td>
+    <td>Programinio gedimas</td>
+    <td>Nepatikrinta</td>
+    <td></td>
+    <td></td>
+  </tr>
+  
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+
+</table>
+						
 						<hr style="margin-top: 25px">
 							<div id="advanced" style="display: none">
 								<iframe id="frame" src="detailed_info.php" style="height: 800px; width: 100%; border: none" scrolling="no"></iframe>
 							</div>
 					</div>
+					
 				</div>
 			</div>
 				 <!-- /. PAGE INNER  -->
@@ -260,6 +409,7 @@ font-size: 16px;"> <?php echo $lang['last_access']; ?> : 11-11-2016 &nbsp; <a on
 			if(!globalName)
 				showName("1");
 			$("#advanced").slideToggle();
+			$("#failures").slideToggle();
 		});
 	});
 	</script>
@@ -315,6 +465,70 @@ font-size: 16px;"> <?php echo $lang['last_access']; ?> : 11-11-2016 &nbsp; <a on
 		});
 	});
 	</script>
+	
+	<script>
+		$(document).ready(function(){
+			$('[data-toggle="tooltip"]').tooltip(placement: "bottom");
+		});
+	</script>
+
+	<script>
+		function languageSwitch (lang) {
+			var url = "<?php echo $currentURL; ?>";
+			switch(lang) {
+				case 'lt':
+					document.cookie = "language=" + "lt";
+					window.location.href = url + "?lang=" + getCookie('language');
+					break;
+				case 'en':
+					document.cookie = "language=" + "en";
+					window.location.href = url + "?lang=" + getCookie('language');
+					break;
+				case 'sv':
+					document.cookie = "language=" + "sv";
+					window.location.href = url + "?lang=" + getCookie('language');
+					break;
+				case 'dz':
+					document.cookie = "language=" + "dz";
+					window.location.href = url + "?lang=" + getCookie('language');
+					break;
+				default:
+					alert("Oops! Something went wrong, please contact admin");
+			}
+		}
+	</script>
+	
+	<script>
+	function getCookie(name) {
+	  var value = "; " + document.cookie;
+	  var parts = value.split("; " + name + "=");
+	  if (parts.length == 2) return parts.pop().split(";").shift();
+	}
+	</script>
+
+	<script>
+		function redirect(URL) {
+			window.location.href = URL + "?lang=" + document.cookie;
+		}
+	</script>
+
+	<script>
+		function setFrameLanguage() {
+			var frame_url = "detailed_info.php?lang=" + document.cookie;
+			top.document.getElementById('frame').setAttribute('src', frame_url);
+		}
+	</script>
+
+	<script>
+		function showAddButton() {
+			if (document.getElementById('add').style.display == "") {
+				document.getElementById('add').style.display = "none";
+			} else {
+				document.getElementById('add').style.display = "";
+			}
+		}
+	</script>
+	
     <!-- METISMENU SCRIPTS -->
     <script src="assets/js/jquery.metisMenu.js"></script>
       <!-- CUSTOM SCRIPTS -->

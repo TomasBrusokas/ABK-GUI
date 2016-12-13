@@ -470,7 +470,7 @@ var myConfig = {
 	  visible: false
 	},
 	series: [{
-	  values: [0],
+	  values: [28, 14, 3, 12, 20, 30, 18, 4, 1],
 	  lineColor: "#00AE4D",
 	  text: "Energy Output",
 	  scales: "scale-x, scale-y-3",
@@ -481,7 +481,7 @@ var myConfig = {
 		type: "circle"
 	  }
 	}, {
-	  values: [0],
+	  values: [56, 23, 17, 85, 47, 45, 21, 15, 19],
 	  lineColor: "#E2D51A",
 	  text: "Energy Recycled",
 	  scales: "scale-x, scale-y-2",
@@ -493,7 +493,7 @@ var myConfig = {
 		size: 5
 	  }
 	}, {
-	  values: [0],
+	  values: [648, 447, 220, 169, 968, 568, 300, 157, 768],
 	  lineColor: "#FB301E",
 	  text: "Energy Consumed",
 	  scales: "scale-x, scale-y",

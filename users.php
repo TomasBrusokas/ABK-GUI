@@ -1,40 +1,10 @@
 <!DOCTYPE html>
-<?php include("template.php"); ?>
+<?php include("template.php");
+error_reporting(0);?>
 <html>
 <head>
 <title><?php echo $lang['users']; ?></title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip(placement: "bottom");
-});
-</script>
-
-<script>
-function languageSwitch(lang) {
-	var url = "<?php echo $currentURL; ?>";
-	switch(lang) {
-		case 'lt':
-			if (document.cookie != "lt") {
-			document.cookie = "lt";
-			window.location.href = url + "?lang=" + document.cookie;
-			} break;
-		case 'en':
-			if (document.cookie != "en") {
-			document.cookie = "en";
-			window.location.href = url + "?lang=" + document.cookie;
-			} break;
-		default:
-			alert("Oops! Something went wrong, please contact admin");
-	}
-}
-</script>
-
-<script>
-function redirect(URL) {
-	window.location.href = URL + "?lang=" + document.cookie;
-}
-</script>
 
 <style>
 .table th, td {
@@ -75,6 +45,8 @@ function redirect(URL) {
 				<div id="languages">
 					<a onclick="languageSwitch('en')"><img data-toggle="tooltip" title="<?php echo $lang['en']; ?>" src="assets/img/en.png" style="cursor:pointer"/></a>
 					<a onclick="languageSwitch('lt')"><img data-toggle="tooltip" title="<?php echo $lang['lt']; ?>" src="assets/img/lt.png" style="cursor:pointer"/></a>
+					<a onclick="languageSwitch('sv')"><img data-toggle="tooltip" title="<?php echo $lang['sv']; ?>" src="assets/img/sv.png" style="cursor:pointer; width: 24px; height: 24px"/></a>
+					<a onclick="languageSwitch('dz')"><img data-toggle="tooltip" title="<?php echo $lang['dz']; ?>" src="assets/img/dz.png" style="cursor:pointer; width: 24px; height: 24px"/></a>
 				</div>
                 <a class="navbar-brand" href="index.php"><?php echo $lang['email']; ?></a> 
             </div>
@@ -89,7 +61,7 @@ font-size: 16px;"> <?php echo $lang['last_access']; ?> : 11-11-2016 &nbsp; <a hr
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
 				<li class="text-center">
-                    <img src="assets/img/find_user.png" class="user-image img-responsive"/>
+                    <img src="assets/img/logo.gif" class="user-image img-responsive"/>
 					</li>
                     <li>
                         <a onclick="redirect('index.php')"><i class="fa fa-dashboard fa-3x"></i><span><?php echo $lang['dashboard']; ?></span></a>
@@ -99,7 +71,16 @@ font-size: 16px;"> <?php echo $lang['last_access']; ?> : 11-11-2016 &nbsp; <a hr
                     </li>
                     <li>
                         <a onclick="redirect('statistics.php')"><i class="fa fa-bar-chart-o fa-3x"></i><span><?php echo $lang['statistics']; ?></span></a>
+                    </li>
+					<li>
+                        <a onclick="redirect('groups.php')"><i class="fa fa-address-book-o fa-3x"></i><span><?php echo $lang['groups']; ?></span></a>
                     </li>	
+					<li>
+                        <a onclick="redirect('failures.php')"><i class="fa fa-wrench fa-3x"></i><span><?php echo $lang['failures']; ?></span></a>
+                    </li>
+					<li>
+                        <a onclick="redirect('rules.php')"><i class="fa fa-lock fa-3x"></i><span><?php echo $lang['rules']; ?></span></a>
+                    </li>
                 </ul>
                
             </div>
@@ -158,7 +139,7 @@ font-size: 16px;"> <?php echo $lang['last_access']; ?> : 11-11-2016 &nbsp; <a hr
 								</tr>
 							</tbody>
 						</table>
-						<div id="registration_form" align="center" style="display: ; margin-top: 100px">
+						<div id="registration_form" align="center" style="display: none; margin-top: 100px">
 							<div class="form-style-2">
 								<div class="form-style-2-heading"><?php echo $lang['user_registration']; ?></div>
 									<form action="" method="post">
@@ -189,12 +170,53 @@ font-size: 16px;"> <?php echo $lang['last_access']; ?> : 11-11-2016 &nbsp; <a hr
     <!-- /. WRAPPER  -->
 	
 	<script>
-	$(document).ready(function(){
-		$("#add").click(function(){
-			$("#registration_form").slideToggle();
+		$(document).ready(function(){
+			$("#add").click(function(){
+				$("#registration_form").slideToggle();
+			});
 		});
-	});
 	</script>
+
+	<script>
+		function languageSwitch (lang) {
+			var url = "<?php echo $currentURL; ?>";
+			switch(lang) {
+				case 'lt':
+					document.cookie = "language=" + "lt";
+					window.location.href = url + "?lang=" + getCookie('language');
+					break;
+				case 'en':
+					document.cookie = "language=" + "en";
+					window.location.href = url + "?lang=" + getCookie('language');
+					break;
+				case 'sv':
+					document.cookie = "language=" + "sv";
+					window.location.href = url + "?lang=" + getCookie('language');
+					break;
+				case 'dz':
+					document.cookie = "language=" + "dz";
+					window.location.href = url + "?lang=" + getCookie('language');
+					break;
+				default:
+					alert("Oops! Something went wrong, please contact admin");
+			}
+		}
+	</script>
+	
+	<script>
+	function getCookie(name) {
+	  var value = "; " + document.cookie;
+	  var parts = value.split("; " + name + "=");
+	  if (parts.length == 2) return parts.pop().split(";").shift();
+	}
+	</script>
+
+	<script>
+		function redirect(URL) {
+			window.location.href = URL + "?lang=" + document.cookie;
+		}
+	</script>
+	
     <!-- METISMENU SCRIPTS -->
     <script src="assets/js/jquery.metisMenu.js"></script>
       <!-- CUSTOM SCRIPTS -->

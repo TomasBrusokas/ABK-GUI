@@ -3,6 +3,7 @@ $lang = array(
 // Language flags hover text
 'en' => 'Anglų',
 'lt' => 'Lietuvių',
+'au' => 'Lietuvių-aukštaičių',
 'dz' => 'Lietuvių-dzūkų',
 'sv' => 'Lietuvių-suvalkiečių',
 
@@ -11,37 +12,37 @@ $lang = array(
 'dashboard' => 'Serveriai',
 'statistics' => 'Statistika',
 'last_access' => 'Paskutinį kartą prisijungta',
-'logout' => 'Atsijungti',
+'logout' => 'Atsijungt',
 'filter' => 'Filtras',
-'advanced_info_tooltip' => 'Pasirinkite vieną iš serverių, kurį norite stebėti,
-tai padaryti galite paspausdami mygtuką dešinėja serverio informacinės eilutės pusėje.
-Toliau įjunkite pažangesnės peržiūros režimą paspausdami mygtuką „Ne“ ir pakeisdami jį į „Taip“.
-Tada galėsite matyti pasirinkto serverio dabartinę būseną bei naudojamus resursus.
-Taip pat išvysite diagramą, kurioje atsispindi šio serverio resursų naudojimo istorija.',
+'advanced_info_tooltip' => 'Pasirinkit vieną iš serverių, kurį norit stebėt,
+tai padaryt galit paspausdami mygtuką dešinėja serverio informacinės eilutės pusėje.
+Toliau įjunkit pažangesnės peržiūros režimą paspausdami mygtuką „Ne“ ir pakeisdami jį į „Taip“.
+Tada galėsit matyt pasirinkto serverio dabartinę būseną bei naudojamus resursus.
+Nu tai tada išvysit diagramą, kurioje atsispindi šio serverio resursų naudojimo istorija.',
 'chosen_server' => 'Pasirinktas serveris',
-'enable' => 'Rodyti detalesnę informaciją',
+'enable' => 'Rodyt detalesnę informaciją',
 'servers_table_title' => 'Visi serveriai',
 'user_server_table_title' => 'Jūsų serveriai',
 'no' => 'Ne',
-'yes' => 'Taip',
+'yes' => 'Tai taip',
 'failures' => 'Gedimai',
 
 // users.php
-'update' => 'Atnaujinti',
-'delete' => 'Pašalinti',
+'update' => 'Atnaujint',
+'delete' => 'Pašalint',
 'user_registration' => 'Naujo vartotojo registracija',
 'email' => 'E-paštas',
 'first_name' => 'Vardas',
 'last_name' => 'Pavardė',
-'edit' => 'Koreguoti',
-'del' => 'Šalinti',
-'add_new' => 'Pridėti naują',
+'edit' => 'Koreguot',
+'del' => 'Šalint',
+'add_new' => 'Pridėt naują',
 'phone_nr' => 'Telefonas',
 'assigned_groups' => 'Priskirtos grupės',
 'password' => 'Slaptažodis',
 'repassword' => 'Re-slaptažodis',
 'description' => 'Aprašymas',
-'registration_submit' => 'Registruoti',
+'registration_submit' => 'Registruot',
 
 // statistics.php
 'bar_chart' => 'Vartotojų ir serverių metinė statistika',
@@ -69,7 +70,7 @@ Taip pat išvysite diagramą, kurioje atsispindi šio serverio resursų naudojim
 // rules.php
 'rules' => 'Taisyklės',
 'existing_rules' => 'Esamos taisyklės',
-'alert' => 'Pranešti...',
+'alert' => 'Pranešt...',
 'used_on' => 'Serverio IP',
 );
 ?>

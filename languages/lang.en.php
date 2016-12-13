@@ -3,7 +3,6 @@ $lang = array(
 // Language flags hover text
 'en' => 'English',
 'lt' => 'Lithuanian',
-'au' => 'Lithuanian-aukštaičių',
 'dz' => 'Lithuanian-dzūkų',
 'sv' => 'Lithuanian-suvalkiečių',
 
@@ -25,6 +24,7 @@ Also you can see a chart which provides information about choosed server usage h
 'user_server_table_title' => 'Your servers',
 'no' => 'No',
 'yes' => 'Yes',
+'failures' => 'Failures',
 
 // users.php
 'update' => 'Update',
@@ -58,5 +58,18 @@ Also you can see a chart which provides information about choosed server usage h
 'RAM_title' => 'Memory is use',
 'CPU_title' => 'CPU usage',
 'HDD_title' => 'Used disk space',
+
+// groups.php
+'groups' => 'User groups',
+'existing_groups' => 'Existing groups',
+'name' => 'Name',
+'parameters' => 'Parameters',
+'numb_of_mem' => 'Number of members',
+
+// rules.php
+'rules' => 'Rules',
+'existing_rules' => 'Existing rules',
+'alert' => 'Alert...',
+'used_on' => 'Server IP',
 );
 ?>
